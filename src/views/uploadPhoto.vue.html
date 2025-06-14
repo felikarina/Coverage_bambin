@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/views/PhotoGallery.vue</title>
+    <title>Code coverage report for src/views/uploadPhoto.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> PhotoGallery.vue</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> uploadPhoto.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -85,37 +85,11 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -134,28 +108,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script setup lang="ts"&gt;
-import NavigationSidebar from './../components/NavigationSidebar.vue'
-import gallery from './../components/gallery.vue'
-import headerGallery from './../components/headerGallery.vue'
-import headerMobile from './../components/headerMobile.vue'
+import NavigationSidebar from "./../components/NavigationSidebar.vue";
 &lt;/script&gt;
 &nbsp;
 &lt;template&gt;
   &lt;main class="columns"&gt;
     &lt;div class="pr-2 column is-one-quarter left-part is-hidden-touch"&gt;
-      &lt;NavigationSidebar class="" /&gt;
+      &lt;NavigationSidebar /&gt;
     &lt;/div&gt;
-    &lt;div class="column right-part"&gt;
-      &lt;div class="column"&gt;
-        &lt;headerGallery class="mx-4 is-hidden-touch" /&gt;
-      &lt;/div&gt;
-      &lt;div class="column"&gt;
-        &lt;headerMobile class="mx-4 is-hidden-desktop" /&gt;
-      &lt;/div&gt;
-      &lt;div class="column"&gt;
-        &lt;gallery class="mt-2 mx-4" /&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;div class="column right-part"&gt;&lt;/div&gt;
   &lt;/main&gt;
 &lt;/template&gt;
 &nbsp;
