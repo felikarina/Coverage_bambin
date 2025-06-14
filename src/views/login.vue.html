@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.2% </span>
+                <span class="strong">93.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>76/79</span>
+                <span class='fraction'>83/89</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.2% </span>
+                <span class="strong">93.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>76/79</span>
+                <span class='fraction'>83/89</span>
             </div>
         
             
@@ -221,10 +221,23 @@
 <a name='L156'></a><a href='#L156'>156</a>
 <a name='L157'></a><a href='#L157'>157</a>
 <a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -267,8 +280,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -287,7 +305,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -380,13 +402,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script setup lang="ts"&gt;
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { useRouter } from "vue-router";
 &nbsp;
 const email = ref("");
 const password = ref("");
 const error = ref("");
 const router = useRouter();
+const emailInput = ref&lt;HTMLInputElement | null&gt;(null);
+const passwordInput = ref&lt;HTMLInputElement | null&gt;(null);
 &nbsp;
 const login = async () =&gt; {
   error.value = "";
@@ -403,9 +427,9 @@ const login = async () =&gt; {
   localStorage.setItem("token", data.token);
   localStorage.setItem("role", data.role);
   localStorage.setItem("userId", data.userId);
-  if (data.role === "admin") router.push("/");
+  if (data.role === "admin") router.push("/administration");
   else if (data.role === "parent") router.push("/galerie-photo");
-  else if (data.role === "nurseryStaff") router.push("/journal-activite");
+  else if (data.role === "nurseryStaff") router.push("/ajout-activite");
 };
 &nbsp;
 const loginDemo = async () =&gt; {
@@ -424,6 +448,11 @@ const loginDemo = async () =&gt; {
   localStorage.setItem("role", data.role);
   router.push("/galerie-photo");
 };
+&nbsp;
+const focusPassword = <span class="fstat-no" title="function not covered" >async () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  await nextTick();</span>
+<span class="cstat-no" title="statement not covered" >  passwordInput.value?.focus();</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &lt;/script&gt;
 &nbsp;
 &lt;template&gt;
@@ -439,6 +468,8 @@ const loginDemo = async () =&gt; {
           class="input is-info"
           type="email"
           placeholder="exemple@mail.com"
+          @keyup.enter="focusPassword"
+          ref="emailInput"
         /&gt;
         &lt;span class="icon is-small is-left"&gt;
           &lt;i class="fas fa-envelope"&gt;&lt;/i&gt;
@@ -452,6 +483,8 @@ const loginDemo = async () =&gt; {
           class="input is-info"
           type="password"
           placeholder="mot de passe"
+          @keyup.enter="login"
+          ref="passwordInput"
         /&gt;
         &lt;span class="icon is-small is-left"&gt;
           &lt;i class="fas fa-lock"&gt;&lt;/i&gt;
@@ -544,7 +577,7 @@ const loginDemo = async () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-14T19:52:34.099Z
+                at 2025-06-14T21:33:24.846Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
