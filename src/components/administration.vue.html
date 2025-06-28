@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>389/389</span>
+                <span class='fraction'>392/392</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>389/389</span>
+                <span class='fraction'>392/392</span>
             </div>
         
             
@@ -696,7 +696,14 @@
 <a name='L631'></a><a href='#L631'>631</a>
 <a name='L632'></a><a href='#L632'>632</a>
 <a name='L633'></a><a href='#L633'>633</a>
-<a name='L634'></a><a href='#L634'>634</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L634'></a><a href='#L634'>634</a>
+<a name='L635'></a><a href='#L635'>635</a>
+<a name='L636'></a><a href='#L636'>636</a>
+<a name='L637'></a><a href='#L637'>637</a>
+<a name='L638'></a><a href='#L638'>638</a>
+<a name='L639'></a><a href='#L639'>639</a>
+<a name='L640'></a><a href='#L640'>640</a>
+<a name='L641'></a><a href='#L641'>641</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -871,6 +878,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -1007,7 +1016,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1062,6 +1070,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -1085,6 +1094,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -1166,6 +1176,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1354,12 +1368,12 @@ const newUser = ref({
   password: "",
 });
 &nbsp;
-const newChild = ref({
+const newChild = ref&lt;Child&gt;({
   firstname: "",
   lastname: "",
   birthDate: "",
   userId: "",
-  userId2: "",
+  userId2: undefined,
 });
 &nbsp;
 const isLoading = ref(false);
@@ -1454,7 +1468,7 @@ const addChild = async () =&gt; {
       lastname: "",
       birthDate: "",
       userId: "",
-      userId2: "",
+      userId2: undefined,
     };
     await fetchChildren();
     createSuccessMsgChild.value = "Enfant créé avec succès";
@@ -1503,10 +1517,12 @@ const getUserChildren = (userId: string) =&gt; {
 &nbsp;
 const getChildParents = (child: Child) =&gt; {
   const parent1 = users.value.find((u) =&gt; u.idUser === child.userId);
-  const parent2 = users.value.find((u) =&gt; u.idUser === child.userId2);
+  const parent2 = child.userId2
+    ? users.value.find((u) =&gt; u.idUser === child.userId2)
+    : null;
 &nbsp;
   if (parent1 &amp;&amp; parent2) {
-    return `${parent1.firstname} ${parent1.lastname} &amp; ${parent2.firstname} ${parent2.lastname}`;
+    return `${parent1.firstname} ${parent1.lastname} et ${parent2.firstname} ${parent2.lastname}`;
   } else if (parent1) {
     return `${parent1.firstname} ${parent1.lastname}`;
   } else if (parent2) {
@@ -1639,9 +1655,8 @@ onMounted(() =&gt; {
                   user.role === 'parent' &amp;&amp;
                   getUserChildren(user.idUser || '').length &gt; 0
                 "
-                class="mt-3"
               &gt;
-                &lt;p class="has-text-weight-bold mb-2"&gt;
+                &lt;p class="has-text-weight-bold blue-dark mb-2"&gt;
                   {{
                     getUserChildren(user.idUser || "").length === 1
                       ? "Enfant :"
@@ -1653,13 +1668,13 @@ onMounted(() =&gt; {
                   :key="child.idChild"
                   class="ml-3 mb-1"
                 &gt;
-                  &lt;p class="is-size-7"&gt;
+                  &lt;p class="is-size-6 blue-dark has-text-weight-bold"&gt;
                     {{ child.firstname }} {{ child.lastname }} -
                     {{ child.birthDate }}
                   &lt;/p&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div v-else-if="user.role === 'parent'" class="mt-3"&gt;
+              &lt;div v-else-if="user.role === 'parent'"&gt;
                 &lt;p class="is-size-7 has-text-grey"&gt;Aucun enfant enregistré&lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -1703,8 +1718,10 @@ onMounted(() =&gt; {
                 &lt;/span&gt;
               &lt;/div&gt;
               &lt;div class="mt-2"&gt;
-                &lt;p class="is-size-7 has-text-grey"&gt;
-                  &lt;strong&gt;Parents :&lt;/strong&gt; {{ getChildParents(child) }}
+                &lt;p class="is-size-6"&gt;
+                  &lt;strong class="blue-dark"
+                    &gt;Parents : {{ getChildParents(child) }}&lt;/strong
+                  &gt;
                 &lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -1924,6 +1941,10 @@ p {
   margin-bottom: 16px;
 }
 &nbsp;
+.blue-dark {
+  color: var(--primary);
+}
+&nbsp;
 .child-form-container {
   background-color: var(--blue-light);
   border-radius: 12px;
@@ -1969,7 +1990,7 @@ p {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-28T22:30:51.861Z
+                at 2025-06-28T22:56:24.673Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
