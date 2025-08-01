@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>282/282</span>
+                <span class='fraction'>280/280</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>282/282</span>
+                <span class='fraction'>280/280</span>
             </div>
         
             
@@ -509,9 +509,7 @@
 <a name='L444'></a><a href='#L444'>444</a>
 <a name='L445'></a><a href='#L445'>445</a>
 <a name='L446'></a><a href='#L446'>446</a>
-<a name='L447'></a><a href='#L447'>447</a>
-<a name='L448'></a><a href='#L448'>448</a>
-<a name='L449'></a><a href='#L449'>449</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L447'></a><a href='#L447'>447</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -536,13 +534,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -643,6 +634,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -991,13 +987,6 @@ const selectedChildIds = ref&lt;string[]&gt;([]);
 const sectionFilter = ref("");
 const childSections = ref&lt;ChildSection[]&gt;([]);
 &nbsp;
-function onSelectChildren(e: Event) {
-  const target = e.target as HTMLSelectElement;
-  selectedChildIds.value = Array.from(target.selectedOptions).map(
-    (opt) =&gt; opt.value
-  );
-}
-&nbsp;
 function toggleChildSelection(id: string) {
   const idx = selectedChildIds.value.indexOf(id);
   if (idx === -1) selectedChildIds.value.push(id);
@@ -1073,7 +1062,7 @@ async function submitPicture() {
   try {
     // Upload to Supabase Storage
     const fileName = `${Date.now()}_${file.value!.name}`;
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("picture")
       .upload(fileName, file.value!);
     if (error) throw new Error("Erreur upload Supabase: " + error.message);
@@ -1095,7 +1084,12 @@ async function submitPicture() {
     }
     await fetchPicturesAndSet();
     message.value = "Photo ajoutée avec succès";
-    date.value = "";
+    // Reset form but keep today's date
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    date.value = `${yyyy}-${mm}-${dd}`;
     title.value = "";
     file.value = null;
     selectedChildIds.value = [];
@@ -1148,9 +1142,9 @@ async function confirmDeletePhoto() {
             &lt;div class="card-content-panel card-content"&gt;
               &lt;div class="content has-text-weight-semibold"&gt;
                 &lt;label for="date"&gt;Date :&lt;/label&gt;
-                &lt;span v-if="errors.date" class="error-message"&gt;{{
-                  errors.date
-                }}&lt;/span&gt;
+                &lt;span v-if="errors.date" class="error-message"&gt;
+                  {{ errors.date }}
+                &lt;/span&gt;
                 &lt;input
                   id="date"
                   type="date"
@@ -1158,9 +1152,9 @@ async function confirmDeletePhoto() {
                   class="input mb-2"
                 /&gt;
                 &lt;label for="title"&gt;Titre :&lt;/label&gt;
-                &lt;span v-if="errors.title" class="error-message"&gt;{{
-                  errors.title
-                }}&lt;/span&gt;
+                &lt;span v-if="errors.title" class="error-message"&gt;
+                  {{ errors.title }}
+                &lt;/span&gt;
                 &lt;input
                   id="title"
                   type="text"
@@ -1169,9 +1163,9 @@ async function confirmDeletePhoto() {
                   placeholder="Titre de la photo"
                 /&gt;
                 &lt;label for="file"&gt;Photo :&lt;/label&gt;
-                &lt;span v-if="errors.file" class="error-message"&gt;{{
-                  errors.file
-                }}&lt;/span&gt;
+                &lt;span v-if="errors.file" class="error-message"&gt;
+                  {{ errors.file }}
+                &lt;/span&gt;
                 &lt;input
                   id="file"
                   type="file"
@@ -1414,7 +1408,7 @@ label[for="section-filter"] {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-28T21:17:08.742Z
+                at 2025-08-01T07:53:49.215Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
