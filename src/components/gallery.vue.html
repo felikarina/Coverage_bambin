@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.49% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>96/100</span>
+                <span class='fraction'>110/114</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.49% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>96/100</span>
+                <span class='fraction'>110/114</span>
             </div>
         
             
@@ -271,7 +271,21 @@
 <a name='L206'></a><a href='#L206'>206</a>
 <a name='L207'></a><a href='#L207'>207</a>
 <a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -279,6 +293,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,18 +324,30 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -488,6 +516,8 @@ import {
   fetchChildren,
   type Child,
 } from "../utils/api";
+import { getRole, getUserId } from "../utils/auth";
+&nbsp;
 type PictureWithChildren = Picture &amp; {
   children?: { idChild: string; firstname: string; lastname: string }[];
 };
@@ -504,8 +534,8 @@ const closeModal = <span class="fstat-no" title="function not covered" >() =&gt;
 <span class="cstat-no" title="statement not covered" >  selectedPicture.value = null;</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-const role = localStorage.getItem("role");
-const userId = localStorage.getItem("userId");
+const role = getRole();
+const userId = getUserId();
 &nbsp;
 const fetchPicturesAndSet = async () =&gt; {
   try {
@@ -516,18 +546,30 @@ const fetchPicturesAndSet = async () =&gt; {
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
     if (role === "parent" &amp;&amp; userId) {
-      // Fetch all children and keep only those belonging to the parent
       const allChildren: Child[] = await fetchChildren();
       const myChildrenIds = allChildren
         .filter((c) =&gt; c.userId === userId || c.userId2 === userId)
         .map((c) =&gt; c.idChild);
-      // Filter pictures: no tag or at least one tag matches a child of the parent
-      filteredPictures.value = allPictures.filter((pic: any) =&gt; {
-        if (!pic.children || pic.children.length === 0) return true;
-        return pic.children.some((child: any) =&gt;
-          myChildrenIds.includes(child.idChild)
+      // Filter: show pictures with no children OR with at least one child matching
+      const hasMatchingChild = allPictures.some(
+        (pic: any) =&gt;
+          pic.children &amp;&amp;
+          pic.children.some((child: any) =&gt;
+            myChildrenIds.includes(child.idChild)
+          )
+      );
+      if (!hasMatchingChild) {
+        filteredPictures.value = allPictures.filter(
+          (pic: any) =&gt; !pic.children || pic.children.length === 0
         );
-      });
+      } else {
+        filteredPictures.value = allPictures.filter((pic: any) =&gt; {
+          if (!pic.children || pic.children.length === 0) return true;
+          return pic.children.some((child: any) =&gt;
+            myChildrenIds.includes(child.idChild)
+          );
+        });
+      }
     } else {
       filteredPictures.value = allPictures;
     }
@@ -694,7 +736,7 @@ p {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-26T08:48:54.244Z
+                at 2025-10-09T22:17:18.516Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
