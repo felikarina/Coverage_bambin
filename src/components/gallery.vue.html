@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.49% </span>
+                <span class="strong">76.31% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>110/114</span>
+                <span class='fraction'>87/114</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.49% </span>
+                <span class="strong">76.31% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>110/114</span>
+                <span class='fraction'>87/114</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -324,33 +324,33 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -545,31 +545,31 @@ const fetchPicturesAndSet = async () =&gt; {
       (a: any, b: any) =&gt;
         new Date(b.date).getTime() - new Date(a.date).getTime()
     );
-    if (role === "parent" &amp;&amp; userId) {
-      const allChildren: Child[] = await fetchChildren();
-      const myChildrenIds = allChildren
-        .filter((c) =&gt; c.userId === userId || c.userId2 === userId)
-        .map((c) =&gt; c.idChild);
+    if (role === <span class="branch-0 cbranch-no" title="branch not covered" >"parent" &amp;&amp; userId) <span class="branch-0 cbranch-no" title="branch not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      const allChildren: Child[] = await fetchChildren();</span>
+<span class="cstat-no" title="statement not covered" >      const myChildrenIds = allChildren</span>
+<span class="cstat-no" title="statement not covered" >        .filter((c) =&gt; c.userId === userId || c.userId2 === userId)</span>
+<span class="cstat-no" title="statement not covered" >        .map((c) =&gt; c.idChild);</span>
       // Filter: show pictures with no children OR with at least one child matching
-      const hasMatchingChild = allPictures.some(
-        (pic: any) =&gt;
-          pic.children &amp;&amp;
-          pic.children.some((child: any) =&gt;
-            myChildrenIds.includes(child.idChild)
-          )
-      );
-      if (!hasMatchingChild) {
-        filteredPictures.value = allPictures.filter(
-          (pic: any) =&gt; !pic.children || pic.children.length === 0
-        );
-      } else {
-        filteredPictures.value = allPictures.filter((pic: any) =&gt; {
-          if (!pic.children || pic.children.length === 0) return true;
-          return pic.children.some((child: any) =&gt;
-            myChildrenIds.includes(child.idChild)
-          );
-        });
-      }
+<span class="cstat-no" title="statement not covered" >      const hasMatchingChild = allPictures.some(</span>
+<span class="cstat-no" title="statement not covered" >        (pic: any) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >          pic.children &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >          pic.children.some((child: any) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >            myChildrenIds.includes(child.idChild)</span>
+<span class="cstat-no" title="statement not covered" >          )</span>
+<span class="cstat-no" title="statement not covered" >      );</span>
+<span class="cstat-no" title="statement not covered" >      if (!hasMatchingChild) {</span>
+<span class="cstat-no" title="statement not covered" >        filteredPictures.value = allPictures.filter(</span>
+<span class="cstat-no" title="statement not covered" >          (pic: any) =&gt; !pic.children || pic.children.length === 0</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
+<span class="cstat-no" title="statement not covered" >      } else {</span>
+<span class="cstat-no" title="statement not covered" >        filteredPictures.value = allPictures.filter((pic: any) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (!pic.children || pic.children.length === 0) return true;</span>
+<span class="cstat-no" title="statement not covered" >          return pic.children.some((child: any) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >            myChildrenIds.includes(child.idChild)</span>
+<span class="cstat-no" title="statement not covered" >          );</span>
+<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
     } else {
       filteredPictures.value = allPictures;
     }
@@ -736,7 +736,7 @@ p {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-10T12:25:32.473Z
+                at 2025-10-22T18:00:33.024Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
